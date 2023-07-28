@@ -1,3 +1,4 @@
+import 'package:cracktech_assessment/UI/DetailsScreen.dart';
 import 'package:cracktech_assessment/UI/HomeScreen.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 import 'package:get/get_navigation/src/routes/transitions_type.dart';
@@ -12,6 +13,7 @@ class AppRoutes{
   List<GetPage> routeList = [
     GetPage(name: "/splashPage", page: () => const SplashPage(),transition: Transition.native),
     GetPage(name: "/homePage", page: () => const HomePage(),transition: Transition.native),
+    GetPage(name: "/detailsPage", page: () => const DetailsPage(),transition: Transition.native),
   ];
 
 

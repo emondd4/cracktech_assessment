@@ -1,5 +1,6 @@
 import 'package:cracktech_assessment/Utils/AppImages.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class HomePage extends StatefulWidget {
@@ -70,41 +71,46 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget movieItem(){
-    return Container(
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(15.0),
-          border: Border.all(width: 1.0,color: Colors.black12)
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: Row(
-          children: [
-            Container(
-              height: 140.0,
-              width: 115.0,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(15.0),
-                image: DecorationImage(image: AssetImage(AppImages.instance.userImage,),fit: BoxFit.cover)
-              ),
-            ),
-            const SizedBox(width: 20.0,),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text("The Cotton Club",style: GoogleFonts.inter(fontWeight: FontWeight.bold,fontSize: 22.0)),
-                RichText(text: TextSpan(
-                  children: [
-                    TextSpan(text: "Year: ",style: GoogleFonts.inter(fontWeight: FontWeight.normal,fontSize: 18.0,color: Colors.black45)),
-                    TextSpan(text: "1984",style: GoogleFonts.inter(fontWeight: FontWeight.normal,fontSize: 18.0,color: Colors.black45)),
-                  ]
-                )),
-                Text("Director:",style: GoogleFonts.inter(fontWeight: FontWeight.normal,fontSize: 18.0,color: Colors.black45)),
-                Text("Francis Ford Coppola",style: GoogleFonts.inter(fontWeight: FontWeight.normal,fontSize: 18.0,color: Colors.black)),
-              ],
-            )
-          ],
+    return InkWell(
+      onTap: () {
+        Get.toNamed("detailsPage");
+      },
+      child: Container(
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(15.0),
+            border: Border.all(width: 1.0,color: Colors.black12)
         ),
-      )
+        child: Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: Row(
+            children: [
+              Container(
+                height: 140.0,
+                width: 115.0,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(15.0),
+                  image: DecorationImage(image: AssetImage(AppImages.instance.userImage,),fit: BoxFit.cover)
+                ),
+              ),
+              const SizedBox(width: 20.0,),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text("The Cotton Club",style: GoogleFonts.inter(fontWeight: FontWeight.bold,fontSize: 22.0)),
+                  RichText(text: TextSpan(
+                    children: [
+                      TextSpan(text: "Year: ",style: GoogleFonts.inter(fontWeight: FontWeight.normal,fontSize: 18.0,color: Colors.black45)),
+                      TextSpan(text: "1984",style: GoogleFonts.inter(fontWeight: FontWeight.normal,fontSize: 18.0,color: Colors.black45)),
+                    ]
+                  )),
+                  Text("Director:",style: GoogleFonts.inter(fontWeight: FontWeight.normal,fontSize: 18.0,color: Colors.black45)),
+                  Text("Francis Ford Coppola",style: GoogleFonts.inter(fontWeight: FontWeight.normal,fontSize: 18.0,color: Colors.black)),
+                ],
+              )
+            ],
+          ),
+        )
+      ),
     );
   }
 

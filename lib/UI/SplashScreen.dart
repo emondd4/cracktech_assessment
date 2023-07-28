@@ -1,5 +1,8 @@
+import 'dart:async';
+
 import 'package:cracktech_assessment/Utils/AppImages.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 
 
@@ -33,6 +36,10 @@ class _SplashPageState extends State<SplashPage> with SingleTickerProviderStateM
     });
 
     animationController.forward();
+
+    Timer(const Duration(seconds: 5), () {
+      Get.toNamed("homePage");
+    });
 
     super.initState();
   }

@@ -11,7 +11,7 @@
 <h4 style="margin-top: 0;" align="start">✔ Create a detailed view that shows up when an item in the list is tapped.</h4> 
 <h4 style="margin-top: 0;" align="start">✔ Use Bloc/GetX for state management.</h4> 
 <h4 style="margin-top: 0;" align="start">❌ Use Bloc/GetX for state management.</h4>
-<h4 style="margin-top: 0;" align="start">❌ Cache API responses using Flutter Hive and Bloc/GetX.</h4> 
+<h4 style="margin-top: 0;" align="start">✔ Cache API responses using Flutter Hive and Bloc/GetX.</h4> 
 </p>
 	
 ## App Screenshots

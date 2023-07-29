@@ -154,7 +154,15 @@ class _HomePageState extends State<HomePage> {
   Widget movieItem(int index) {
     return InkWell(
       onTap: () {
-        Get.toNamed("detailsPage");
+        Get.toNamed("detailsPage",arguments: [
+          controller.movieListBaseResponse.movies![index].genres,
+          controller.movieListBaseResponse.movies![index].title,
+          controller.movieListBaseResponse.movies![index].year,
+          controller.movieListBaseResponse.movies![index].director,
+          controller.movieListBaseResponse.movies![index].actors,
+          controller.movieListBaseResponse.movies![index].plot,
+          controller.movieListBaseResponse.movies![index].posterUrl
+        ]);
       },
       child: Container(
           decoration: BoxDecoration(
@@ -170,16 +178,19 @@ class _HomePageState extends State<HomePage> {
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(15.0),
                   ),
-                  child: CachedNetworkImage(
-                    imageUrl: controller.movieListBaseResponse.movies![index].posterUrl!,
-                    imageBuilder: (context, imageProvider) => Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10.0),
-                        image: DecorationImage(image: imageProvider, fit: BoxFit.fill)
+                  child: Hero(
+                    tag: "cover",
+                    child: CachedNetworkImage(
+                      imageUrl: controller.movieListBaseResponse.movies![index].posterUrl!,
+                      imageBuilder: (context, imageProvider) => Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10.0),
+                          image: DecorationImage(image: imageProvider, fit: BoxFit.fill)
+                        ),
                       ),
+                      placeholder: (context, url) => const Center(child: CircularProgressIndicator()),
+                      errorWidget: (context, url, error) => Image.asset(AppImages.instance.errorImage,height: 36.0,width: 36.0,),
                     ),
-                    placeholder: (context, url) => const Center(child: CircularProgressIndicator()),
-                    errorWidget: (context, url, error) => Image.asset(AppImages.instance.errorImage,height: 36.0,width: 36.0,),
                   ),
                 ),
                 const SizedBox(

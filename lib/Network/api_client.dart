@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:cracktech_assessment/Utils/AppUiUtils.dart';
 import 'package:dio/dio.dart';
 import 'package:dio/io.dart';
 import 'package:flutter/foundation.dart';
@@ -19,11 +20,9 @@ class ApiClient {
     try {
       Dio dio = await _dioClient(isTokenRequired,isImageRequired);
       Response response = await dio.get(url, queryParameters: parameters);
-      // print(response);
       return _response(response);
     } on DioError catch (dioError) {
-      // _dioErrorCheck(dioError);
-      return _response(dioError.response!);
+      UIUtil.instance.onFailed(handleError(dioError));
     } catch (e) {
       LoggerUtil.instance.printLog(msg:  'Something went wrong : $e');
     }
@@ -35,12 +34,9 @@ class ApiClient {
     try {
       Dio dio = await _dioClient(isTokenRequired,isImageRequired);
       Response response = await dio.get(url, queryParameters: Map<String, dynamic>());
-      // print(response);
       return response.data;
-      // return _response(response);
     } on DioError catch (dioError) {
-      // _dioErrorCheck(dioError);
-      return _response(dioError.response!);
+      UIUtil.instance.onFailed(handleError(dioError));
     } catch (e) {
       LoggerUtil.instance.printLog(msg:  'Something went wrong : $e');
     }
@@ -54,8 +50,7 @@ class ApiClient {
       Response response = await dio.post(url, queryParameters: params, data: body);
       return _response(response);
     } on DioError catch (dioError) {
-      // _dioErrorCheck(dioError);
-      return _response(dioError.response!);
+      UIUtil.instance.onFailed(handleError(dioError));
     } catch (e) {
       LoggerUtil.instance.printLog(msg:  'Something went wrong : $e');
     }
@@ -102,8 +97,7 @@ class ApiClient {
       );
       return _response(response);
     } on DioError catch (dioError) {
-      // _dioErrorCheck(dioError);
-        handleError(dioError);
+      UIUtil.instance.onFailed(handleError(dioError));
       return _response(dioError.response!);
     } catch (e) {
       LoggerUtil.instance.printLog(msg:  'Something went wrong : $e');
@@ -114,30 +108,30 @@ class ApiClient {
   static handleError(DioError error) {
     switch (error.type) {
       case DioErrorType.connectionTimeout:
-        throw Exception(error.response);
+        UIUtil.instance.onFailed("Connection Timeout : ${error.response.toString()}");
       case DioErrorType.sendTimeout:
-        throw Exception(error.response);
+        UIUtil.instance.onFailed("Connection Sent Timeout : ${error.response.toString()}");
       case DioErrorType.receiveTimeout:
-        throw Exception(error.response);
+        UIUtil.instance.onFailed("Connection Receive Timeout : ${error.response.toString()}");
       case DioErrorType.badResponse:
         if (error.response == null) {
-          throw Exception(error.response);;
+          UIUtil.instance.onFailed(error.response.toString());
         }
         switch (error.response?.statusCode) {
           case 401:
-            throw Exception(error.response);;
+            UIUtil.instance.onFailed("401 : Unauthorized");
           case 400:
-            throw Exception(error.response);;
+            UIUtil.instance.onFailed("400 : Bad Request");
           case 404:
-            throw Exception(error.response);;
+            UIUtil.instance.onFailed("404 : Not Found");
           case 500:
-            throw Exception(error.response);;
+            UIUtil.instance.onFailed("500 : Internal Server Error");
         }
         break;
       case DioErrorType.cancel:
         break;
       default:
-        throw Exception(error.response);
+        UIUtil.instance.onFailed(error.response.toString());
     }
   }
 

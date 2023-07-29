@@ -19,8 +19,8 @@ class _SplashPageState extends State<SplashPage> with SingleTickerProviderStateM
   late Animation colorAnimation;
   late AnimationController animationController;
 
-  double height = 96;
-  double width = 96;
+  double height = 64;
+  double width = 64;
 
   @override
   void initState() {
@@ -56,7 +56,7 @@ class _SplashPageState extends State<SplashPage> with SingleTickerProviderStateM
                 color: colorAnimation.value,
             ),
             child: Center(
-              child: Lottie.asset(AppImages.instance.splashLogo,height: 96.0,width: 96.0)
+              child: Lottie.asset(AppImages.instance.splashAnin,height: 96.0,width: 96.0)
             ),
           ),
         ),

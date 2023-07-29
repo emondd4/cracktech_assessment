@@ -10,7 +10,7 @@
 <h4 style="margin-top: 0;" align="start">✔ Handle network issues and provide error feedback.</h4>
 <h4 style="margin-top: 0;" align="start">✔ Create a detailed view that shows up when an item in the list is tapped.</h4> 
 <h4 style="margin-top: 0;" align="start">✔ Use Bloc/GetX for state management.</h4> 
-<h4 style="margin-top: 0;" align="start">❌ Use Bloc/GetX for state management.</h4>
+<h4 style="margin-top: 0;" align="start">❌ Write tests for your application.</h4>
 <h4 style="margin-top: 0;" align="start">✔ Cache API responses using Flutter Hive and Bloc/GetX.</h4> 
 </p>
 	
